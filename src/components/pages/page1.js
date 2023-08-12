@@ -1,0 +1,18 @@
+import React from 'react';
+import styles from './Page1.module.css';
+
+const Navbar = () => {
+    return (
+            <div className={styles.page1}>
+                <div className={styles.page1Container}>
+                    <div className={styles.p}>Special:</div>
+                    <div className={styles.headline}>Discover Our Container Mode</div>
+                    <div className={styles.p2}> Pack up everything at one place and share with the multiples.</div>
+                    <button className={styles.btn}>Check Now</button>
+                </div>
+
+            </div>
+    );
+};
+
+export default Navbar;
