@@ -13,10 +13,10 @@ const Navbar = () => {
                         </div>
                     </div>    
                 </div>
-                <div class={styles.div2} className="flex justify-center content-center"> Home </div>
-                <div class={styles.div3} className="flex justify-center"> Shop </div>
-                <div class={styles.div4} className="flex justify-center"> About </div>
-                <div class={styles.div5} className="flex justify-center"> Contact </div>
+                <button class={styles.div2} className="flex justify-center content-center"> Home </button>
+                <button class={styles.div3} className="flex justify-center"> Shop </button>
+                <button class={styles.div4} className="flex justify-center"> About </button>
+                <button class={styles.div5} className="flex justify-center"> Contact </button>
                 <div class={styles.div6}> </div>
                 <div class={styles.div7} className="flex justify-end">  <img className={styles.navImg} src="search.svg" alt="Logo" /> </div>
                 <div class={styles.div8} className="flex justify-center">  <img className={styles.navImg} src="chart.svg" alt="Logo" /> </div>

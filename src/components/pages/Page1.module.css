@@ -6,7 +6,7 @@
     display: inline-flex;
 }
 .page1Container{ 
-    position: fixed;
+    /* position: fixed; */
     margin: 12% 45%;
     width: 650px;
     height: 420px;
@@ -55,3 +55,8 @@
     background: #FFF;
 }
 
+/* @media (max-width:1250px){
+    .page1Container{ 
+        margin: 12% 20%;
+    }
+} */

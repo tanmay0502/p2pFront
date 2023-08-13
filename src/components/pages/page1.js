@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Page1.module.css';
 
-const Navbar = () => {
+const page1 = () => {
     return (
             <div className={styles.page1}>
                 <div className={styles.page1Container}>
@@ -15,4 +15,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default page1;
