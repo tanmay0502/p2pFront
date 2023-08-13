@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './Product.module.css';
 
 const ProductComponent = ({ name, image, price, discount }) => {
-  // Calculate discounted price
   const discountedPrice = price - (price * (discount / 100));
 
   return (

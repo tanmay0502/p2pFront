@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './OurProd.module.css';
 import prev from './Range.module.css'
 import Product from '../misc/product';
+import Link from 'next/link';
 
 const range = () => {
     var products = [
@@ -16,14 +17,19 @@ const range = () => {
                         <div className={styles.productList}>
                         {products.map((product, index) => (
                             <>
-                                <div className="flex justify-center items-center">
-                                <Product
-                                key={index}
-                                name={product[0]}
-                                image={product[1]}
-                                price={product[2]}
-                                discount={product[3]}
-                                />
+                                <div  
+                                className="flex justify-center items-center"
+                                // onClick={function() {window.open('/product-list');}}  
+                                >
+                                    
+                                    <Product
+                                    key={index}
+                                    name={product[0]}
+                                    image={product[1]}
+                                    price={product[2]}
+                                    discount={product[3]}
+                                    />
+                                    
                                 </div>
                             </>
                         ))}
