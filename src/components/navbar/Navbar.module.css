@@ -1,5 +1,7 @@
+
 .navbar {
     display: flex;
+    position: fixed;
     justify-content: space-between;
     align-items: center;
     padding: 10px 200px;
@@ -44,11 +46,24 @@
     .div4 { grid-area: 1 / 4 / 2 / 5; }
     .div5 { grid-area: 1 / 5 / 2 / 6; }
     .div6 { grid-area: 1 / 6 / 2 / 7; }
-    .div7 { grid-area: 1 / 7 / 2 / 8; }
-    .div8 { grid-area: 1 / 8 / 2 / 9; }
-    .div9 { grid-area: 1 / 9 / 2 / 10; }
+    .div7 { grid-area: 1 / 7 / 2 / 8;
+            display: flex;
+            justify-content: end; }
+    .div8 { grid-area: 1 / 8 / 2 / 9;
+        display: flex;
+    justify-content: center;
+            }
+    .div9 { grid-area: 1 / 9 / 2 / 10; 
+        display: flex;
+        justify-content: start;
+    }
+.div1 .div2 .div3 .div4 .div5 .div6 .div8{
+    display: flex;
+    justify-content: center;
+}
 
-/* Media query for mobile screens */
+
+
 @media (max-width: 768px) {
     .navbar {
         padding: 10px;

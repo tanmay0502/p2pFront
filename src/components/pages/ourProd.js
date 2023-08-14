@@ -17,6 +17,7 @@ const range = () => {
                         <div className={styles.productList}>
                         {products.map((product, index) => (
                             <>
+                            <Link href="/product" >
                                 <div  
                                 className="flex justify-center items-center"
                                 // onClick={function() {window.open('/product-list');}}  
@@ -31,7 +32,9 @@ const range = () => {
                                     />
                                     
                                 </div>
+                                </Link>
                             </>
+                            
                         ))}
                         </div>
 
