@@ -5,19 +5,38 @@ import prev from '@/components/pages/OurProd.module.css'
 import styles from './Page.module.css'
 import Link from 'next/link'
 
-export default function list() {
-    var products = [
-        ["Lato Bag", "blueBag", "2000","10"],["Bag Asus", "bag3", "2000","10"],["Lato Bag", "bag4", "2000","10"],["Lato Bag", "bag5", "2000","10"],
-        ["Lato Bag", "bag9", "2000","10"],["Lato Bag", "bag5", "2000","10"],["Lato Bag", "bag7", "2000","10"],["Lato Bag", "bag6", "2000","10"],
-        ["Lato Bag", "blueBag", "2000","10"],["Bag Asus", "bag3", "2000","10"],["Lato Bag", "bag4", "2000","10"],["Lato Bag", "bag5", "2000","10"],
-        ["Lato Bag", "bag9", "2000","10"],["Lato Bag", "bag5", "2000","10"],["Lato Bag", "bag7", "2000","10"],["Lato Bag", "bag6", "2000","10"],
-        ["Lato Bag", "blueBag", "2000","10"],["Bag Asus", "bag3", "2000","10"],["Lato Bag", "bag4", "2000","10"],["Lato Bag", "bag5", "2000","10"],
-        ["Lato Bag", "bag9", "2000","10"],["Lato Bag", "bag5", "2000","10"],["Lato Bag", "bag7", "2000","10"],["Lato Bag", "bag6", "2000","10"],
-    ]
+const getList = async () => {
+    const res = await fetch("http://127.0.0.1:8000/products_list/?page=1");
+    return res.json();
+}
+
+export default async function list() {
+    const gproducts = await getList();
+    // {console.log(gproducts)}
+    // var products = [[gproducts.results[0].name]]
+    // var products = [];
+    // for (let i = 0; i < gproducts.length; i++) {
+    //   const product = gproducts.results[i];
+    //   console.log(i);
+    //   const productInfo = [product.name, product.image, product.price, product.discount];
+    //   products.push(productInfo);
+    // }
+
+    // {const products = gproducts.map(product => {
+    //   return [product.name, product.image, product.price, product.discount];
+    // });}
+    // var products = [
+    //     ["Lato Bag", "blueBag", "2000","10"],["Bag Asus", "bag3", "2000","10"],["Lato Bag", "bag4", "2000","10"],["Lato Bag", "bag5", "2000","10"],
+    //     ["Lato Bag", "bag9", "2000","10"],["Lato Bag", "bag5", "2000","10"],["Lato Bag", "bag7", "2000","10"],["Lato Bag", "bag6", "2000","10"],
+    //     ["Lato Bag", "blueBag", "2000","10"],["Bag Asus", "bag3", "2000","10"],["Lato Bag", "bag4", "2000","10"],["Lato Bag", "bag5", "2000","10"],
+    //     ["Lato Bag", "bag9", "2000","10"],["Lato Bag", "bag5", "2000","10"],["Lato Bag", "bag7", "2000","10"],["Lato Bag", "bag6", "2000","10"],
+    //     ["Lato Bag", "blueBag", "2000","10"],["Bag Asus", "bag3", "2000","10"],["Lato Bag", "bag4", "2000","10"],["Lato Bag", "bag5", "2000","10"],
+    //     ["Lato Bag", "bag9", "2000","10"],["Lato Bag", "bag5", "2000","10"],["Lato Bag", "bag7", "2000","10"],["Lato Bag", "bag6", "2000","10"],
+    // ]
     return (
       <div>
             <Navbar/>
-
+            
             <div className={styles.banner}>
                 <div className={styles.head}>
                     <div className="flex justify-center items-center">
@@ -31,21 +50,22 @@ export default function list() {
             {/* Map Products */}
             <div className="p-20">
                 <div className={prev.productList}>
-                            {products.map((product, index) => (
+                            {gproducts.results.map((product, index) => (
                                 <>
-                                <Link href="/product" >
+                                <Link href={"/product/" + product.id} >
                                     <div className="flex justify-center items-center">
                                     <Product
                                     key={index}
-                                    name={product[0]}
-                                    image={product[1]}
-                                    price={product[2]}
-                                    discount={product[3]}
+                                    name={product.name}
+                                    image={product.image}
+                                    price={product.price}
+                                    discount={product.discount}
                                     />
                                     </div>
                                     </Link></>
                             ))}
                 </div>
+                
             </div>
             <Footer/>
       </div>

@@ -7,7 +7,7 @@ const ProductComponent = ({ name, image, price, discount }) => {
   return (
     <div className={styles.product}>
       <div className={styles['product-image']}>
-        <img src={image + ".png"} alt={name} />
+        <img src={image} alt={name} />
         <div className={styles['discount-badge']}>-{discount}%</div>
       </div>
       <div className= {styles.back}>
