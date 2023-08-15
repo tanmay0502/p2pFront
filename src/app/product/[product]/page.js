@@ -1,3 +1,4 @@
+// "use client"
 import Navbar from '@/components/navbar/navbar'
 import Footer from '@/components/footer/footer'
 import Product from '@/components/misc/product'
@@ -6,14 +7,23 @@ import styles from './Page.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default function Single({params}) {
-    var currProduct =  ["Lato Bag", 
-                        "Lorem Ipsume is a bag with nso .dsjds;fl d jdksf usdfh . sdfj sdf jksdfl fsdjp liorn mskim. osjsdfl Lfdjsfl Lorem Ipsume is a bag with nso .dsjds;fl d jdksf usdfh . sdfj sdf jksdfl fsdjp liorn mskim. osjsdfl LfdjsflLorem Ipsume is a bag with nso .dsjds;fl d jdksf usdfh . sdfj sdf jksdfl fsdjp liorn mskim. osjsdfl LfdjsflLorem Ipsume is a bag with nso .dsjds;fl d jdksf usdfh . sdfj sdf jksdfl fsdjp liorn mskim. osjsdfl LfdjsflLorem Ipsume is a bag with nso .dsjds;fl d jdksf usdfh . sdfj sdf jksdfl fsdjp liorn mskim. osjsdfl LfdjsflLorem Ipsume is a bag with nso .dsjds;fl d jdksf usdfh . sdfj sdf jksdfl fsdjp liorn mskim. osjsdfl Lfdjsfl.",
-                        "blueBag",
-                        "2000",
-                        "10"];
+const getProduct = async (params) => {
+    const res = await fetch("http://127.0.0.1:8000/product/"+ params.product);
+    return res.json();
+}
 
-    const [name, description, imageName, price, discount] = currProduct;
+
+export default async function Single({params}) {
+    const gproducts = await getProduct(params);
+    
+    var currProduct =  gproducts;
+    // console.log(currProduct)
+    let name = currProduct.name;
+    let description = currProduct.description;
+    let imageName = currProduct.image;
+    let price = currProduct.price;
+    let discount = currProduct.discount;
+    // const [name, description, imageName, price, discount] = [currProduct.name, currProduct.description, currProduct.imageName, currProduct.price, currProduct.discount];
     const discountedPrice = price - (price * (discount / 100));
     return (
        
@@ -24,11 +34,12 @@ export default function Single({params}) {
                         <div className={styles.productInfo}>
                         <div className={styles.imageContainer}>
                             <div className={styles.imageFrame}>
-                            <Image className={styles.image} src="/bagPro.png" layout="fill" objectFit="contain" alt="Product" />
+                            {/* <Image className={styles.image} src= {imageName} layout="fill" objectFit="contain" alt="Product" /> */}
+                            <img className={styles.image} src={imageName} alt={name} />
                             </div>
                         </div>
                         <div className={styles.details}>
-                            <p className={styles.name}> {params.product}</p>
+                            <p className={styles.name}> {name}</p>
                             <p>Discounted Price: ₹{discountedPrice.toFixed(2)}<s>{" ₹"+price}</s></p>
                             {/* <p className={styles.originalPrice}>Original Price: ${price}</p> */}
                             <div className={styles.actions}>
