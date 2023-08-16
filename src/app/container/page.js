@@ -4,33 +4,46 @@ import Product from '@/components/misc/product'
 import prev from '@/components/pages/OurProd.module.css'
 import styles from './Page.module.css'
 import Link from 'next/link'
+import Container from './container'
 
-// const getList = async () => {
-//     const res = await fetch("http://127.0.0.1:8000/products_list/?page=1");
-//     return res.json();
-// }
+const getList = async () => {
+    const res = await fetch("http://127.0.0.1:8000/cart/userid");
+    return res.json();
+}
 
 export default async function list() {
-    // const gproducts = await getList();
+    
+  // const gproducts = await getList();
+
+  // cartItems = gproducts;
+
+  let cartItems = [["sdh","s2","2","3"],["sdh","s2","2","3"]]
+  // const [cartItems, setCartItems] = useState([
+  //   // Initial cart items here...
+  // ]);
+
+  const removeFromCart = (index) => {
+    const updatedCart = [...cartItems];
+    updatedCart.splice(index, 1);
+
+    // setCartItems(updatedCart);
+  };
+
     return (
       <div>
             <Navbar/>
-            <div class="parent">
-            <div class="div1">
-
+            <div className={styles.banner}>
+                <div className={styles.head}>
+                    <div className="flex justify-center items-center">
+                        <img className={styles.p2pLogo} src="p2pLogo.png" alt="Logo" />
+                        Container
+                    </div>
+                </div>
             </div>
-            <div class="div2">
-            
+            <div className="py-10">
+              <Container cartItems={cartItems} removeFromCart={removeFromCart} />
             </div>
-            <div class="div3">
-            
-            </div>
-            <div class="div4"> </div>
-            <div class="div5"> </div>
-            <div class="div6"> </div>
-            <div class="div7"> </div>
-            </div>
-
+             
             <Footer/>
       </div>
     )
