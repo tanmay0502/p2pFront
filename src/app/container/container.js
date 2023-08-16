@@ -1,14 +1,22 @@
 // components/Cart.js
 import styles from './Page.module.css'
 
-const Cart = ({ cartItems, removeFromCart }) => {
-  const getTotalItems = () => cartItems.reduce((total, item) => total + item.quantity, 0);
-  const getTotalAmount = () => cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+const Container = ({ cartItems, removeFromCart, quantity }) => {
+  let sum = 0;
+  const getTotalItems = () => {
+    for(var i in quantity){
+      sum = sum + quantity[i];
+      // console.log({i})
+    }
+    return sum;
+  }
+  const getTotalAmount = () => cartItems.reduce((total, item, index) => total + item.price * quantity[index], 0);
 
   return (
+    <div className='py-10'>
     <div className={styles.cart}>
       <div className={styles.cartHeader}>
-        <p className={styles.head2}>Your Container</p>
+        <p className={styles.head}>Your Container</p>
         <span className={styles.totalItems}>Total Items: {getTotalItems()}</span>
       </div>
       <div className={styles.cartItems}>
@@ -18,8 +26,8 @@ const Cart = ({ cartItems, removeFromCart }) => {
             <div>
               <p>{item.name}</p>
               <p>Price: ${item.price}</p>
-              <p>Quantity: {item.quantity}</p>
-              <p>Subtotal: ${(item.price * item.quantity).toFixed(2)}</p>
+              <p>Quantity: {quantity[index]}</p>
+              <p>Subtotal: ${(item.price * quantity[index])}</p>
             </div>
             {/* <button className={styles.deleteBtn} onClick={() => removeFromCart(index)}>Delete</button> */}
           </div>
@@ -35,7 +43,8 @@ const Cart = ({ cartItems, removeFromCart }) => {
 
       </div>
     </div>
+    </div>
   );
 };
 
-export default Cart;
+export default Container;
