@@ -9,7 +9,7 @@ import Container from './container'
 // import { useEffect } from 'react'
 
 const getCList = async () => {
-    const res = await fetch("http://127.0.0.1:8000/container/?id=W123");
+    const res = await fetch("http://127.0.0.1:8000/container/?id=1");
     // console.log(res.json());
     return res.json();
 }

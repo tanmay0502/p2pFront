@@ -9,7 +9,7 @@ import Cart from './cart'
 // import { useEffect } from 'react'
 
 const getList = async () => {
-    const res = await fetch("http://127.0.0.1:8000/cart/?userid=T123");
+    const res = await fetch("http://127.0.0.1:8000/cart/?userid=T234");
     return res.json();
 }
 const getProduct = async (id) => {
