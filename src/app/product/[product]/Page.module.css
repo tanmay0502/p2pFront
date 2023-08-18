@@ -100,13 +100,19 @@
 }
 
 .reviewContainer {
+  /* margin-top: 1.5rem; */
+  padding: 1rem;
+  /* border: 1px solid #ccc; */
+  border-radius: 8px;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+}
+.container {
   margin-top: 1.5rem;
   padding: 1rem;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
 .userName {
   font-size: 1.2rem;
   font-weight: bold;
@@ -162,4 +168,68 @@
 .reviewText {
   font-size: 1rem;
   margin-top: 0.5rem;
+}
+/* Replace these class names with your actual CSS class names */
+.ratingStars {
+  display: inline-block;
+  font-size: 24px; /* Adjust as needed */
+}
+
+.starFilled {
+  color: gold; /* Filled star color */
+}
+
+.starHalf {
+  color: gold; /* Half-filled star color */
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.starHalf::before {
+  content: "\2605"; /* Unicode star character */
+  position: absolute;
+  left: 0;
+  width: 50%;
+  overflow: hidden;
+  color: transparent;
+}
+
+.starEmpty {
+  color: lightgray; /* Empty star color */
+}
+.reviewFC {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.reviewI {
+  width: 100%;
+  height: 150px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  margin-bottom: 10px;
+}
+
+.submitB {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .reviewFC {
+    padding: 10px;
+  }
 }

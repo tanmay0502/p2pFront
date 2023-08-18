@@ -1,5 +1,6 @@
 // components/Cart.js
 import styles from './Page.module.css'
+import Link from 'next/link';
 
 const Cart = ({ cartItems, removeFromCart, quantity }) => {
   let sum = 0;
@@ -13,6 +14,7 @@ const Cart = ({ cartItems, removeFromCart, quantity }) => {
   const getTotalAmount = () => cartItems.reduce((total, item, index) => total + item.price * quantity[index], 0);
 
   return (
+    <div className='py-10'>
     <div className={styles.cart}>
       <div className={styles.cartHeader}>
         <p className={styles.head}>Your Cart</p>
@@ -36,11 +38,12 @@ const Cart = ({ cartItems, removeFromCart, quantity }) => {
         <div className={styles.totalAmount}>
           Total: <span className={styles.amount}>${getTotalAmount()}</span>
         </div>
-        <button className={"block w-100  bg-blue-400 hover:bg-blue-500 text-white  py-2 px-4 rounded-full"}>Checkout</button>
+        <Link href={"/checkout/"} className="bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-full" >Buy</Link>
         <button className={"mt-2 bg-transparent hover:bg-blue-400 text-blue-400  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-full"}>+ Container</button>
 
 
       </div>
+    </div>
     </div>
   );
 };

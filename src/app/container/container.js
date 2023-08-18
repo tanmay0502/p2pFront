@@ -1,5 +1,6 @@
 // components/Cart.js
 import styles from './Page.module.css'
+import Link from 'next/link';
 
 const Container = ({ cartItems, removeFromCart, quantity }) => {
   let sum = 0;

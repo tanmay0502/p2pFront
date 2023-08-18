@@ -8,12 +8,12 @@ import Link from 'next/link'
 import Cart from './cart'
 // import { useEffect } from 'react'
 
-const getList = async () => {
-    const res = await fetch("http://127.0.0.1:8000/cart/?userid=T234");
+async function getList(){
+    const res = await fetch("http://127.0.0.1:8000/cart/?userid=T234",{cache: "no-cache"});
     return res.json();
 }
 const getProduct = async (id) => {
-  const res = await fetch("http://127.0.0.1:8000/product/"+ id);
+  const res = await fetch("http://127.0.0.1:8000/product/"+ id,{cache: "no-cache"});
   return res.json();
 }
 
