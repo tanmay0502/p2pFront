@@ -4,7 +4,9 @@
     grid-template-columns: repeat(6, 1fr);
     gap: 20px; /* Adjust the gap as needed */
   }
-  
+  .img{
+    width: 400px
+  }
   /* Media queries for smaller screens */
   @media (max-width: 1200px) {
     .productList {

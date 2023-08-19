@@ -6,6 +6,7 @@ import prev from '@/components/pages/OurProd.module.css'
 import styles from './Page.module.css'
 import Link from 'next/link'
 import Cart from './cart'
+import Image from 'next/image'
 // import { useEffect } from 'react'
 
 async function getList(){
@@ -76,7 +77,9 @@ export default async function list() {
             <div className={styles.banner}>
                 <div className={styles.head}>
                     <div className="flex justify-center items-center">
-                        <img className={styles.p2pLogo} src="p2pLogo.png" alt="Logo" />
+                        <Image className={styles.p2pLogo} src="/p2pLogo.png" alt="Logo" width={100} height={100}/>
+
+
                         Cart
                     </div>
                 </div>

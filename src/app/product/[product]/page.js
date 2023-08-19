@@ -152,7 +152,8 @@ export default async function Single({params}) {
     // console.log({reviews})
     let name = currProduct.name;
     let description = currProduct.description;
-    let imageName = currProduct.image;
+    let imageName =  currProduct.image;
+    console.log({imageName})
     let price = currProduct.price;
     let discount = currProduct.discount;
     // const [name, description, imageName, price, discount] = [currProduct.name, currProduct.description, currProduct.imageName, currProduct.price, currProduct.discount];
@@ -168,7 +169,8 @@ export default async function Single({params}) {
                         <div className={styles.imageContainer}>
                             <div className={styles.imageFrame}>
                             {/* <Image className={styles.image} src= {imageName} layout="fill" objectFit="contain" alt="Product" /> */}
-                            <img className={styles.image} src={imageName} alt={name} />
+                            {/* <Image className={styles.image} src = {"/"+imageName} alt={name} width={100} height={100} /> */}
+                            <img className={styles.image} src = {imageName} alt={name} />
                             </div>
                         </div>
                         <div className={styles.details}>

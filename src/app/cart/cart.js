@@ -1,6 +1,7 @@
 // components/Cart.js
 import styles from './Page.module.css'
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Cart = ({ cartItems, removeFromCart, quantity }) => {
   let sum = 0;
@@ -23,7 +24,7 @@ const Cart = ({ cartItems, removeFromCart, quantity }) => {
       <div className={styles.cartItems}>
         {cartItems.map((item, index) => (
           <div className={styles.cartItem} key={index}>
-            <img src={"bag2.png"} alt={item.name} />
+            <Image src={"/bag2.png"} alt={item.name} width={100} height={100}/>
             <div>
               <p>{item.name}</p>
               <p>Price: ${item.price}</p>

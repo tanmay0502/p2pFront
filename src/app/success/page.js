@@ -6,6 +6,7 @@ import prev from '@/components/pages/OurProd.module.css'
 import styles from './Page.module.css'
 import old from '../cart/Page.module.css'
 import Link from 'next/link'
+import Image from 'next/image'
 import { redirect } from 'next/dist/server/api-utils'
 // import { useNa } from 'next/router'
 // import 
@@ -27,7 +28,7 @@ export default async function list() {
             <div className={old.banner}>
                 <div className={old.head}>
                     <div className="flex justify-center items-center">
-                        <img className={old.p2pLogo} src="p2pLogo.png" alt="Logo" />
+                    <Image clsassName={old.p2pLogo} src="/p2pLogo.png" alt="Logo" width={100} height={100} />
                         Checkout
                     </div>
                 </div>

@@ -5,6 +5,7 @@ import prev from '@/components/pages/OurProd.module.css'
 import styles from './Page.module.css'
 import Link from 'next/link'
 import old from '../product-list/Page.module.css'
+import Image from 'next/image'
 
 // import prev from '@/components/pages/OurProd.module.css'
 
@@ -16,14 +17,15 @@ const getList = async () => {
 
 export default async function seller() {
     const gproducts = await getList();
-
+    console.log({gproducts})
     return (
       <div>
             <Navbar/>
               <div className={old.banner}>
                   <div className={old.head}>
                       <div className="flex justify-center items-center">
-                          <img className={old.p2pLogo} src="p2pLogo.png" alt="Logo" />
+  
+                          <Image clsassName={styles.p2pLogo} src="/p2pLogo.png" alt="Logo" width={100} height={100} />
                           Your Products
                       </div>
                   </div>

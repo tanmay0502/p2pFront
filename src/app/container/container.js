@@ -1,7 +1,7 @@
 // components/Cart.js
 import styles from './Page.module.css'
 import Link from 'next/link';
-
+import Image from 'next/image';
 const Container = ({ cartItems, removeFromCart, quantity }) => {
   let sum = 0;
   const getTotalItems = () => {
@@ -23,7 +23,7 @@ const Container = ({ cartItems, removeFromCart, quantity }) => {
       <div className={styles.cartItems}>
         {cartItems.map((item, index) => (
           <div className={styles.cartItem} key={index}>
-            <img src={"bag2.png"} alt={item.name} />
+            <Image src={"/bag2.png"} alt={item.name} width={100} height={100}/>
             <div>
               <p>{item.name}</p>
               <p>Price: ${item.price}</p>
@@ -40,7 +40,6 @@ const Container = ({ cartItems, removeFromCart, quantity }) => {
         </div>
         {/* <button className={"block w-100  bg-blue-400 hover:bg-blue-500 text-white  py-2 px-4 rounded-full"}>Checkout</button> */}
         <button className={"mt-2 bg-transparent hover:bg-blue-400 text-blue-400  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-full"}>+ Cart</button>
-
 
       </div>
     </div>

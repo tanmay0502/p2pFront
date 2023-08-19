@@ -3,7 +3,7 @@ import styles from './OurProd.module.css';
 import prev from './Range.module.css'
 import Product from '../misc/product';
 import Link from 'next/link';
-
+import Image from 'next/image';
 const range = () => {
     var products = [
         ["Lato Bag", "blueBag", "2000","10"],["Bag Asus", "bag3", "2000","10"],["Lato Bag", "bag4", "2000","10"],["Lato Bag", "bag5", "2000","10"],
@@ -41,8 +41,11 @@ const range = () => {
                 </div>
                 <div>
                     <p className={prev.head} >Share Container</p>
-                    <div>
-                        <img className={styles.img} src="Paint.png" alt="Logo" />
+                    <div className='flex justify-center'>
+                        <div className='border-2 my-2 p-8'>
+                            <Image clsassName={styles.p2pLogo} src="/page1L.png" alt="Logo" width={400} height={400} />
+
+                        </div>
                     </div>
                 </div>
                 

@@ -5,6 +5,7 @@ import prev from '@/components/pages/OurProd.module.css'
 import styles from './Page.module.css'
 import Link from 'next/link'
 import Btn from './btn'
+import Image from 'next/image'
 const getList = async () => {
     const res = await fetch("http://127.0.0.1:8000/products_list/?page=1",{cache: "no-cache"});
     return res.json();
@@ -40,7 +41,7 @@ export default async function list() {
             <div className={styles.banner}>
                 <div className={styles.head}>
                     <div className="flex justify-center items-center">
-                        <img className={styles.p2pLogo} src="p2pLogo.png" alt="Logo" />
+                        <Image className={styles.p2pLogo} src="/p2pLogo.png" alt="Logo" width={100} height={100} />
                         Products
                     </div>
                 </div>
