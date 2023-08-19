@@ -8,7 +8,7 @@ const ProductComponent = ({ name, image, price, discount }) => {
     <div className={styles.product}>
       <div className={styles['product-image']}>
         <img src={image} alt={name} />
-
+      {console.log({image})}
         {/* <Image src={"/"+image} alt={name} width={100} height={100} /> */}
         <div className={styles['discount-badge']}>-{discount}%</div>
       </div>

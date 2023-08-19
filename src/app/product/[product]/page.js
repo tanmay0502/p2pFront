@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
 import { redirect } from 'next/dist/server/api-utils'
+import prev3 from '@/components/pages/OurProd.module.css'
 
 // const reviewForm = () => {
 //     "use server"
@@ -99,7 +100,10 @@ const RatingStars = (rating) => {
 //       </div>
 //     );
 //   };
-  
+var products = [
+    ["Lato Bag", "/blueBag.png", "4000","18"],["Bag Asus", "/bag3.png", "2000","15"],["Lato Bag", "/bag4.png", "2200","10"]
+]
+
 
 const labels = {
     0.5: 'Useless',
@@ -284,14 +288,41 @@ export default async function Single({params}) {
                             </div></div>
                         <div className={styles.description}>
                             <div className={styles.container}>
-                                <div className="w-full flex justify-center"><p className={styles.descriptionHead}>Related Products</p></div>
-
+                                
                             </div>
                             </div>
                         </div>
                         </div> 
+                        
                     </div>
                     </div>
+                </div>
+                <div className='px-20'>
+                <div className="w-full flex justify-center"><p className={styles.descriptionHead}>Related Products</p></div>
+
+                    <div className={prev3.productList}>
+                                        {products.map((product, index) => (
+                                            <>
+                                            <Link href="/product" >
+                                                <div  
+                                                className="flex justify-center items-center"
+                                                // onClick={function() {window.open('/product-list');}}  
+                                                >
+                                                    <Product
+                                                    key={index}
+                                                    name={product[0]}
+                                                    image={product[1]}
+                                                    price={product[2]}
+                                                    discount={product[3]}
+                                                    />
+
+                                                </div>
+                                                </Link>
+                                            </>
+                                            
+                                        ))}
+                                    </div>
+                                
                 </div>
             <Footer/>
       </div>
