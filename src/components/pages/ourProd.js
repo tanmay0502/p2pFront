@@ -6,8 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 const range = () => {
     var products = [
-        ["Lato Bag", "blueBag", "2000","10"],["Bag Asus", "bag3", "2000","10"],["Lato Bag", "bag4", "2000","10"],["Lato Bag", "bag5", "2000","10"],
-        ["Lato Bag", "bag9", "2000","10"],["Lato Bag", "bag5", "2000","10"],["Lato Bag", "bag7", "2000","10"],["Lato Bag", "bag6", "2000","10"],
+        ["Lato Bag", "blueBag.png", "4000","18"],["Bag Asus", "bag3.png", "2000","15"],["Lato Bag", "bag4.png", "2200","10"]
     ]
 
     return (
@@ -22,7 +21,6 @@ const range = () => {
                                 className="flex justify-center items-center"
                                 // onClick={function() {window.open('/product-list');}}  
                                 >
-                                    
                                     <Product
                                     key={index}
                                     name={product[0]}
@@ -30,7 +28,7 @@ const range = () => {
                                     price={product[2]}
                                     discount={product[3]}
                                     />
-                                    
+
                                 </div>
                                 </Link>
                             </>
@@ -42,7 +40,7 @@ const range = () => {
                 <div>
                     <p className={prev.head} >Share Container</p>
                     <div className='flex justify-center'>
-                        <div className='border-2 my-2 p-8'>
+                        <div className='border-2 mt-4 mb-10 p-8'>
                             <Image clsassName={styles.p2pLogo} src="/page1L.png" alt="Logo" width={400} height={400} />
 
                         </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Product.module.css';
-
+import Image from 'next/image';
 const ProductComponent = ({ name, image, price, discount }) => {
   const discountedPrice = price - (price * (discount / 100));
 
@@ -8,6 +8,8 @@ const ProductComponent = ({ name, image, price, discount }) => {
     <div className={styles.product}>
       <div className={styles['product-image']}>
         <img src={image} alt={name} />
+
+        {/* <Image src={"/"+image} alt={name} width={100} height={100} /> */}
         <div className={styles['discount-badge']}>-{discount}%</div>
       </div>
       <div className= {styles.back}>
