@@ -1,0 +1,25 @@
+.banner{
+        width: 100%;
+        height: calc(40vh) ;
+        background-image: url("../../../../public/banner.png") ;
+        background-size: cover;
+        display: inline-flex;
+}
+.head{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    
+    color: #000;
+    font-family: Poppins;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+.p2pLogo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

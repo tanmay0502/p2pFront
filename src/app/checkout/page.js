@@ -36,10 +36,11 @@ export default async function list() {
             <div className={styles.checkoutContainer}>
                 <div className='flex justify-center items-center pb-10'><p className={styles.billing}>Billing</p></div>
                 <form className={styles.form} action = "">
-                <label className={styles.label} htmlFor="address">Please Enter the details:</label>
+                <div className='pb-1'><label className={styles.label} htmlFor="address">Please Enter the details:</label></div>
                   <div>
                     
                     <input
+                    // className="pt-2"
                       type="text"
                       id="address"
                       className={styles.input}
@@ -67,7 +68,7 @@ export default async function list() {
                       required
                     />
                   </div>
-                <Link href={"/success"} className="bg-blue-400 hover:bg-blue-500 text-white py-2 px-4 rounded-full" >Place Order</Link>
+                <Link href={"/success"}  ><button type="submit" className="bg-blue-400 hover:bg-blue-500 text-white py-2 px-4 rounded-full">Place Order</button></Link>
 
                   {/* <div className='pt-10'><button type="submit" className="bg-blue-400 hover:bg-blue-500 text-white py-2 px-4 rounded-full">Place Order</button></div> */}
                 </form>

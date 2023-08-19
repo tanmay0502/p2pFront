@@ -4,27 +4,54 @@ import Product from '@/components/misc/product'
 import prev from '@/components/pages/OurProd.module.css'
 import styles from './Page.module.css'
 import Link from 'next/link'
+import old from '../product-list/Page.module.css'
 
-// const getList = async () => {
-//     const res = await fetch("http://127.0.0.1:8000/products_list/?page=1");
-//     return res.json();
-// }
-const handleSubmit = async (event) => {
-  "use server";
-  // event.preventDefault();
-  // window.alert('Order placed successfully!');
+// import prev from '@/components/pages/OurProd.module.css'
+
+const getList = async () => {
+  const res = await fetch("http://127.0.0.1:8000/products_list/?page=1",{cache: "no-cache"});
+  return res.json();
 }
-// const handleSubmit = (event) => {
-//   "use server";
-//   event.preventDefault();
-//   alert('Order placed successfully!');
-// };
+
+
 export default async function seller() {
-    // const gproducts = await getList();
+    const gproducts = await getList();
 
     return (
       <div>
             <Navbar/>
+              <div className={old.banner}>
+                  <div className={old.head}>
+                      <div className="flex justify-center items-center">
+                          <img className={old.p2pLogo} src="p2pLogo.png" alt="Logo" />
+                          Your Products
+                      </div>
+                  </div>
+              </div>
+              <div className="p-20">
+              <div className='flex justify-center w-full mb-10'>
+              <Link href={"/seller/add"} className="bg-transparent hover:bg-blue-400 text-blue-400  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-full" > + New Product </Link>
+                
+              </div>
+                <div className={prev.productList}>
+                            
+
+                            {gproducts.results.map((product, index) => (
+                                <>
+                                <Link href={"/product/" + product.id} >
+                                    <div className="flex justify-center items-center">
+                                    <Product
+                                    key={index}
+                                    name={product.name}
+                                    image={product.image}
+                                    price={product.price}
+                                    discount={product.discount}
+                                    />
+                                    </div>
+                                    </Link></>
+                            ))}
+                </div>
+            </div>
 
 
             <Footer/>

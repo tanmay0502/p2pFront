@@ -24,8 +24,29 @@ export default async function list() {
     return (
       <div>
             <Navbar/>
-              Order Placed Successfully
-              <Link href={"/"} className="mt-2 bg-transparent hover:bg-blue-400 text-blue-400  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-full" >Shop More</Link>
+            <div className={old.banner}>
+                <div className={old.head}>
+                    <div className="flex justify-center items-center">
+                        <img className={old.p2pLogo} src="p2pLogo.png" alt="Logo" />
+                        Checkout
+                    </div>
+                </div>
+            </div>
+              <div className='w-full flex justify-center'>
+                <div>
+
+                
+               <div className='mt-10 text-xl text-green-500 flex justify-center py-10'>
+               Order Placed Successfully
+              </div> 
+              <div className='flex justify-center mb-10'>
+
+              
+              <Link href={"/product-list"} className="mt-2 bg-transparent hover:bg-blue-400 text-blue-400  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-full" >Shop More</Link>
+              </div>
+              </div>
+              </div>
+              
             <Footer/>
       </div>
     )

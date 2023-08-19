@@ -4,15 +4,16 @@ import Product from '@/components/misc/product'
 import prev from '@/components/pages/OurProd.module.css'
 import styles from './Page.module.css'
 import Link from 'next/link'
-import Btn from './btn'
-const getList = async () => {
-    const res = await fetch("http://127.0.0.1:8000/products_list/?page=1",{cache: "no-cache"});
+import Btn from '../btn'
+
+const getList = async (params) => {
+    const res = await fetch("http://127.0.0.1:8000/products_list/?page="+ params.productList,{cache: "no-cache"});
     return res.json();
 }
 
-export default async function list() {
-    const gproducts = await getList();
-    // {console.log(gproducts)}
+export default async function list({params}) {
+    const gproducts = await getList(params);
+    {console.log({params})}
     // var products = [[gproducts.results[0].name]]
     // var products = [];
     // for (let i = 0; i < gproducts.length; i++) {
@@ -22,7 +23,7 @@ export default async function list() {
     //   products.push(productInfo);
     // }
 
-    // {const products = gproducts.map(product => {
+    // {const products = gproducts.map(product => {}
     //   return [product.name, product.image, product.price, product.discount];
     // });}
     // var products = [
@@ -40,7 +41,7 @@ export default async function list() {
             <div className={styles.banner}>
                 <div className={styles.head}>
                     <div className="flex justify-center items-center">
-                        <img className={styles.p2pLogo} src="p2pLogo.png" alt="Logo" />
+                        {/* <img className={styles.p2pLogo} src="p2pLogo.png" alt="Logo" /> */}
                         Products
                     </div>
                 </div>
@@ -62,10 +63,10 @@ export default async function list() {
                                     discount={product.discount}
                                     />
                                     </div>
-                                </Link></>
+                                    </Link></>
                             ))}
                 </div>
-                <Btn currentPage={1}/>
+                <Btn currentPage={params.productList}/>
             </div>
             <Footer/>
       </div>
