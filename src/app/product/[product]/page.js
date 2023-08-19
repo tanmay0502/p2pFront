@@ -163,9 +163,11 @@ export default async function Single({params}) {
        
       <div>
             <Navbar/>
-                <div>
+                <div className='pt-10'>
                     <div className={styles.productDetail}>
+                    <div className={styles.containerM}>
                         <div className={styles.productInfo}>
+                         
                         <div className={styles.imageContainer}>
                             <div className={styles.imageFrame}>
                             {/* <Image className={styles.image} src= {imageName} layout="fill" objectFit="contain" alt="Product" /> */}
@@ -175,7 +177,7 @@ export default async function Single({params}) {
                         </div>
                         <div className={styles.details}>
                             <p className={styles.name}> {name}</p>
-                            <p>Discounted Price: ₹{discountedPrice.toFixed(2)}<s>{" ₹"+price}</s></p>
+                            <p className={styles.nameSm}>₹{discountedPrice.toFixed(2)} <span className='text-xl text-red-400'><s>{" ₹"+price}</s></span></p>
                             {/* <p className={styles.originalPrice}>Original Price: ${price}</p> */}
                             <div className={styles.actions}>
                                 <Link href={"/checkout/"} className="bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-full" >Buy</Link>
@@ -184,13 +186,18 @@ export default async function Single({params}) {
                             </div>
                         </div>
                         </div>
+                        </div>
                         {/* <hr className={styles.horizontalLine} /> */}
                         <div>
                         <div className={styles.container}>
-                        <div className={styles.description}>
-                            <div className="w-full flex justify-center"><p className={styles.descriptionHead}>Product Description</p></div>
-                            {description}</div></div>
-                            <div className={styles.container}>
+                            <div className={styles.description}>
+                                <div className="w-full flex justify-center">
+                                    <p className={styles.descriptionHead}>Product Description</p>
+                                </div>
+                                    <p className='w-100 flex justify-center'>{description}</p>
+                            </div>
+                        </div>
+                        <div className={styles.container}>
                         <div className={styles.description}>
                             <div className="w-full flex justify-center"><p className={styles.descriptionHead}>Ratings and Reviews</p></div>
                             {/* <ReviewForm /> */}
@@ -200,7 +207,7 @@ export default async function Single({params}) {
                                
                                 <div className={styles.reviewFC}>
                                     <p className={styles.h2}>Write a Review</p>
-                                    <div className='flex pt-1 pb-2'>
+                                <div className='flex pt-1 pb-2'>
 
                                     <p className='pt-1 text-lg pr-2'>Rate product: </p>
                                     <form action=""> 
@@ -242,8 +249,8 @@ export default async function Single({params}) {
                                     </form>
                                 </div>
                                 </div>
-
-
+                            <div className='flex justify-center'>           
+                            <div className={styles.rev}>
                             <div className='flex'>
                             <p className='pt-1 pr-2 text-lg'>Average Ratings by {users} users: </p>
                                 <Box
@@ -282,11 +289,13 @@ export default async function Single({params}) {
                             </div>
                             </div>
                         </div>
-                        
+                        </div> 
+                    </div>
                     </div>
                 </div>
             <Footer/>
       </div>
+      
     )
   }
   
