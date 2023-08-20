@@ -2,8 +2,7 @@
 import styles from './Page.module.css'
 import Link from 'next/link';
 import Image from 'next/image';
-
-const Cart = ({ cartItems, removeFromCart, quantity }) => {
+const Container = ({ cartItems, removeFromCart, quantity }) => {
   let sum = 0;
   const getTotalItems = () => {
     for(var i in quantity){
@@ -18,7 +17,7 @@ const Cart = ({ cartItems, removeFromCart, quantity }) => {
     <div className='py-10'>
     <div className={styles.cart}>
       <div className={styles.cartHeader}>
-        <p className={styles.head}>Your Cart</p>
+        <p className={styles.head}>Your Container</p>
         <span className={styles.totalItems}>Total Items: {getTotalItems()}</span>
       </div>
       <div className={styles.cartItems}>
@@ -29,7 +28,7 @@ const Cart = ({ cartItems, removeFromCart, quantity }) => {
               <p>{item.name}</p>
               <p>Price: ${item.price}</p>
               <p>Quantity: {quantity[index]}</p>
-              <p>Subtotal: ${(item.price * quantity[index]).toFixed(2)}</p>
+              <p>Subtotal: ${(item.price * quantity[index])}</p>
             </div>
             {/* <button className={styles.deleteBtn} onClick={() => removeFromCart(index)}>Delete</button> */}
           </div>
@@ -39,8 +38,8 @@ const Cart = ({ cartItems, removeFromCart, quantity }) => {
         <div className={styles.totalAmount}>
           Total: <span className={styles.amount}>${getTotalAmount()}</span>
         </div>
-        <Link href={"/checkout/"} className="bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-full" >Buy</Link>
-
+        {/* <button className={"block w-100  bg-blue-400 hover:bg-blue-500 text-white  py-2 px-4 rounded-full"}>Checkout</button> */}
+        <button className={"mt-2 bg-transparent hover:bg-blue-400 text-blue-400  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-full"}>+ Cart</button>
 
       </div>
     </div>
@@ -48,4 +47,4 @@ const Cart = ({ cartItems, removeFromCart, quantity }) => {
   );
 };
 
-export default Cart;
+export default Container;

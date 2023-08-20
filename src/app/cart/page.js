@@ -18,8 +18,9 @@ const getProduct = async (id) => {
   return res.json();
 }
 
+
 export default async function list() {
-    
+
   const gproducts = await getList();
   console.log({gproducts})
   const keys = Object.keys(gproducts.data);
@@ -35,7 +36,7 @@ export default async function list() {
   
   await Promise.all(promises); // Wait for all promises to resolve
   
-  console.log({quantity})
+  // console.log({quantity})
   // keys.forEach(async (key) => {
   //   // const id = gproducts.data[key];
   //   let prod = await getProduct(key);
@@ -71,6 +72,40 @@ export default async function list() {
     // setCartItems(updatedCart);
   };
 
+  const addContainer = async (FormData) => {
+    "use server";
+    const timestamp = new Date().getTime();
+    const randomId = `${timestamp}${Math.floor(Math.random() * 1000)}`;
+    // const name = FormData.get("name")
+    let cItems = {
+    }
+    console.log({cartItems})
+    console.log(quantity)
+    for (let i = 0; i < cartItems.length; i++) {
+      const item = cartItems[i];
+      const itemQuantity = quantity[i];
+      cItems[item.id] = itemQuantity;
+    }
+    console.log({cItems})
+    // alert(randomId);
+    
+    console.log({randomId})
+    const rev = {
+        id: randomId,
+        product_list: cItems,
+    }
+  
+    await fetch('http://127.0.0.1:8000/container/', {
+      method: "POST",
+      body: JSON.stringify(rev),
+      headers:{
+        "Content-Type": "application/json",
+      }
+    })
+
+    
+  }
+
     return (
       <div>
             <Navbar/>
@@ -78,14 +113,16 @@ export default async function list() {
                 <div className={styles.head}>
                     <div className="flex justify-center items-center">
                         <Image className={styles.p2pLogo} src="/p2pLogo.png" alt="Logo" width={100} height={100}/>
-
-
                         Cart
                     </div>
                 </div>
             </div>
             <div className="pt-2">
               <Cart cartItems={cartItems} removeFromCart={removeFromCart} quantity = {quantity}/>
+              <form action = {addContainer}>
+              
+              <button type='submit' className={"mt-2 bg-transparent hover:bg-blue-400 text-blue-400  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-full"}>+ Container</button>
+              </form>
             </div>
             <Footer/>
       </div>

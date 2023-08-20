@@ -9,8 +9,8 @@ import Container from './container'
 import Image from 'next/image'
 // import { useEffect } from 'react'
 
-const getCList = async () => {
-    const res = await fetch("http://127.0.0.1:8000/container/?id=524",{cache: "no-cache"});
+const getCList = async (params) => {
+    const res = await fetch("http://127.0.0.1:8000/container/?id="+params.id,{cache: "no-cache"});
     // console.log(res.json());
     return res.json();
 }
@@ -19,9 +19,9 @@ const getProduct = async (id) => {
   return res.json();
 }
 
-export default async function list() {
+export default async function list({params}) {
     
-  const products = await getCList();
+  const products = await getCList(params);
   console.log({products})
   const keys = Object.keys(products.data);
   let allItems = {};

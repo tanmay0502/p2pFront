@@ -9,7 +9,7 @@ const page1 = () => {
                     <div className={styles.p}>Special:</div>
                     <div className={styles.headline}>Discover Our Container Mode</div>
                     <div className={styles.p2}> Pack up everything at one place and share with the multiples.</div>
-                    <Link href="/container" className={styles.btn}>Check Now</Link>
+                    <Link href="/container/search" className={styles.btn}>Check Now</Link>
                 </div>
 
             </div>

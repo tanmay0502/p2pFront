@@ -1,0 +1,38 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
+  
+  .inputField {
+    font-family: 'Poppins', sans-serif;
+    width: 300px;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+    transition: border-color 0.3s ease-in-out;
+  }
+  
+  .inputField:focus,
+  .inputField:hover {
+    border-bottom-color: #0056b3;
+  }
+  
+  .button {
+    font-family: 'Poppins', sans-serif;
+    width: 200px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .button:hover {
+    background-color: #0056b3;
+  }
+  
