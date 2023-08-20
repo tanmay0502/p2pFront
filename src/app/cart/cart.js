@@ -1,5 +1,5 @@
 // components/Cart.js
-import styles from './Page.module.css'
+import styles from './Cart.module.css'
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -15,7 +15,7 @@ const Cart = ({ cartItems, removeFromCart, quantity }) => {
   const getTotalAmount = () => cartItems.reduce((total, item, index) => total + item.price * quantity[index], 0);
 
   return (
-    <div className='py-10'>
+    <div className='pt-10'>
     <div className={styles.cart}>
       <div className={styles.cartHeader}>
         <p className={styles.head}>Your Cart</p>
@@ -31,7 +31,6 @@ const Cart = ({ cartItems, removeFromCart, quantity }) => {
               <p>Quantity: {quantity[index]}</p>
               <p>Subtotal: ${(item.price * quantity[index]).toFixed(2)}</p>
             </div>
-            {/* <button className={styles.deleteBtn} onClick={() => removeFromCart(index)}>Delete</button> */}
           </div>
         ))}
       </div>
@@ -39,11 +38,15 @@ const Cart = ({ cartItems, removeFromCart, quantity }) => {
         <div className={styles.totalAmount}>
           Total: <span className={styles.amount}>${getTotalAmount()}</span>
         </div>
-        <Link href={"/checkout/"} className="bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-full" >Buy</Link>
-
-
+        {/* <Link href={"/checkout/"} className={styles.buyButton}>Buy</Link>
+         */}
+         
       </div>
+      <div classname="w-full flex justify-center mb-10"> 
+
     </div>
+    </div>
+
     </div>
   );
 };

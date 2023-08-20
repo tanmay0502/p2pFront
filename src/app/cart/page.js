@@ -12,7 +12,7 @@ import Image from 'next/image'
 // import { useEffect } from 'react'
 
 async function getList(){
-    const res = await fetch("http://127.0.0.1:8000/cart/?userid=T234",{cache: "no-cache"});
+    const res = await fetch("http://127.0.0.1:8000/cart/?userid=T123",{cache: "no-cache"});
     return res.json();
 }
 const getProduct = async (id) => {
@@ -138,7 +138,11 @@ export default async function list() {
             <div className="pt-2">
               <Cart cartItems={cartItems} removeFromCart={removeFromCart} quantity = {quantity}/>
               </div>
-              <div className='w-full flex justify-center mb-10'>
+              <div className='w-full flex justify-center mb-2'> 
+             <Link href={"/checkout/"} className="mt-10 bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-full flex justify-center w-20" >Buy</Link>
+             </div>
+             <div className='w-full flex justify-center mb-10'> 
+              
               <form action = {addContainer} onSubmit={handleSubmit()}>
               <button type='submit' className={"flex justify-center mx-4"+"mt-2 bg-transparent hover:bg-blue-400 text-blue-400  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-full"}>   Add to Container </button> 
               

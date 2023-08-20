@@ -22,7 +22,38 @@ const getProduct = async (id) => {
 export default async function list({params}) {
     
   const products = await getCList(params);
-  console.log({products})
+
+  const addCart = async (FormData) => {
+    "use server";
+    
+    console.log(products.data)
+    for (let i in products.data) {
+        // const item = cartItems[i];
+        // const itemQuantity = quantity[i];
+        // cItems[item.id] = itemQuantity;
+        // console.log(i)
+          const rev = {
+            userID:"T123",
+            product:i,
+            quantity:products.data[i]
+        }
+        const response = await fetch('http://127.0.0.1:8000/insert_cart/', {
+          method: "POST",
+          body: JSON.stringify(rev),
+          headers:{
+            "Content-Type": "application/json",
+          }
+
+        })
+        const data = await response.json();
+        console.log({data})
+    }
+
+
+    // cartItems[0].id = 1;
+    // router.push("/container"+id)
+  }
+
   const keys = Object.keys(products.data);
   let allItems = {};
   let containerItems = [];
@@ -36,7 +67,7 @@ export default async function list({params}) {
   
   await Promise.all(promises); // Wait for all promises to resolve
   
-  console.log({quantity})
+  // console.log({quantity})
   // keys.forEach(async (key) => {
   //   // const id = gproducts.data[key];
   //   let prod = await getProduct(key);
@@ -62,7 +93,7 @@ export default async function list({params}) {
   //   ...item,
   //   quantity: quantity[index]
   // }));
-  console.log({containerItems});
+  // console.log({containerItems});
 
 
   const removeFromContainer = (index) => {
@@ -83,9 +114,21 @@ export default async function list({params}) {
                     </div>
                 </div>
             </div>
+
             <div className="pt-2">
-              <Container cartItems={containerItems} removeFromCart={removeFromContainer} quantity = {quantity}/>
+              <Container cartItems={containerItems} removeFromCart={removeFromContainer} quantity = {quantity} id={params.id}/>
             </div>
+
+            <div className='w-full flex justify-center mb-10'>
+
+              <form action = {addCart} >
+              <button type='submit' className={"flex justify-center mx-4"+"mt-2 bg-transparent hover:bg-blue-400 text-blue-400  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-full"}>   Add to Cart </button> 
+              
+              </form>
+              {/* {success} */}
+              </div>
+
+
             <Footer/>
       </div>
     )
