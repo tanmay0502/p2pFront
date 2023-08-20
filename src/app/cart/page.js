@@ -1,4 +1,6 @@
 // 'use client'
+import { useRouter } from 'next/navigation';
+// import React, { useState } from 'react';
 import Navbar from '@/components/navbar/navbar'
 import Footer from '@/components/footer/footer'
 import Product from '@/components/misc/product'
@@ -63,8 +65,17 @@ export default async function list() {
   //   quantity: quantity[index]
   // }));
   // console.log({cartItems});
-
-
+  const getId = () =>{
+    const timestamp = new Date().getTime();
+    const randomId = `${timestamp}${Math.floor(Math.random() * 1000)}`;
+    // alert(randomId)
+    return randomId
+  }
+  const handleSubmit = () =>{
+    // const router = useRouter();
+    // console.log("submitted yyyyyyyyyyyyyyyyyyyyyyyyayyyyyyyyy")
+    return;
+  }
   const removeFromCart = (index) => {
     const updatedCart = [...cartItems];
     updatedCart.splice(index, 1);
@@ -72,10 +83,13 @@ export default async function list() {
     // setCartItems(updatedCart);
   };
 
+  let success = cartItems[0].id
+
   const addContainer = async (FormData) => {
     "use server";
     const timestamp = new Date().getTime();
     const randomId = `${timestamp}${Math.floor(Math.random() * 1000)}`;
+    // const router = useRouter();
     // const name = FormData.get("name")
     let cItems = {
     }
@@ -86,25 +100,29 @@ export default async function list() {
       const itemQuantity = quantity[i];
       cItems[item.id] = itemQuantity;
     }
-    console.log({cItems})
+
     // alert(randomId);
-    
+    // const randomId= getId();
     console.log({randomId})
     const rev = {
         id: randomId,
         product_list: cItems,
     }
   
-    await fetch('http://127.0.0.1:8000/container/', {
+    const response = await fetch('http://127.0.0.1:8000/container/', {
       method: "POST",
       body: JSON.stringify(rev),
       headers:{
         "Content-Type": "application/json",
       }
-    })
 
-    
+    })
+    const data = await response.json();
+    console.log({data})
+    // cartItems[0].id = 1;
+    // router.push("/container"+id)
   }
+
 
     return (
       <div>
@@ -119,11 +137,14 @@ export default async function list() {
             </div>
             <div className="pt-2">
               <Cart cartItems={cartItems} removeFromCart={removeFromCart} quantity = {quantity}/>
-              <form action = {addContainer}>
+              </div>
+              <div className='w-full flex justify-center mb-10'>
+              <form action = {addContainer} onSubmit={handleSubmit()}>
+              <button type='submit' className={"flex justify-center mx-4"+"mt-2 bg-transparent hover:bg-blue-400 text-blue-400  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-full"}>   Add to Container </button> 
               
-              <button type='submit' className={"mt-2 bg-transparent hover:bg-blue-400 text-blue-400  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-full"}>+ Container</button>
               </form>
-            </div>
+              {/* {success} */}
+              </div>
             <Footer/>
       </div>
     )
