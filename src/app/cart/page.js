@@ -122,7 +122,7 @@ export default async function list() {
     })
     const data = await response.json();
     console.log({data})
-    redirect("/container/"+randomId)
+    redirect("/cart/"+randomId)
     // revalidatePath('/cart')
     // location.reload()
     // window.location.reload();
@@ -151,7 +151,7 @@ export default async function list() {
              <div className='w-full flex justify-center mb-10'> 
               {/* <Btn /> */}
               <form action = {addContainer}>
-              <button type='submit' className={"flex justify-center mx-4"+"mt-2 bg-transparent hover:bg-blue-400 text-blue-400  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-full"}>   Add to Container </button> 
+              <button type='submit' className={"flex justify-center mx-4"+"mt-2 bg-transparent hover:bg-blue-400 text-blue-400  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-full"}>  + Create Container </button> 
               
               </form>
               {/* {success} */}
