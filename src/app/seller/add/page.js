@@ -25,28 +25,26 @@ const addProduct = async (FormData) => {
 
   const blobLike = image.blobLike.target;
 
-  // const fileReader = new FileReader();
+  const fileReader = new FileReader();
   
-  // fileReader.onload = function(event) {
-  //   const imageData = event.target.result; // This will contain the image data
-  //   // You can use `imageData` as needed, for example, to display the image.
-  // };
-  
-  // Read the Blob content as data URL
-  // fileReader.readAsDataURL(blobLike);
+  fileReader.onload = function(event) {
+    const imageData = event.target.result; // This will contain the image data
+    // You can use `imageData` as needed, for example, to display the image.
+  };
+  fileReader.readAsDataURL(blobLike);
 
 
   const rev = {
       name,description, seller, image,price,discount, customer_count, stock, category
   }
   console.log(blobLike)
-  // await fetch('http://127.0.0.1:8000/products_list/', {
-  //   method: "POST",
-  //   body: JSON.stringify(rev),
-  //   headers:{
-  //     "Content-Type": "application/json",
-  //   }
-  // })
+  await fetch('http://127.0.0.1:8000/products_list/', {
+    method: "POST",
+    body: JSON.stringify(rev),
+    headers:{
+      "Content-Type": "application/json",
+    }
+  })
   
 
 }

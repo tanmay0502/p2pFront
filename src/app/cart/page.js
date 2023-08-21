@@ -1,5 +1,6 @@
 // 'use client'
 import { useRouter } from 'next/navigation';
+import { redirect } from 'next/navigation'
 // import React, { useState } from 'react';
 import Navbar from '@/components/navbar/navbar'
 import Footer from '@/components/footer/footer'
@@ -10,6 +11,8 @@ import Link from 'next/link'
 import Cart from './cart'
 import Image from 'next/image'
 // import { useEffect } from 'react'
+import Btn from './button';
+import { revalidatePath } from 'next/cache';
 
 async function getList(){
     const res = await fetch("http://127.0.0.1:8000/cart/?userid=T123",{cache: "no-cache"});
@@ -119,6 +122,10 @@ export default async function list() {
     })
     const data = await response.json();
     console.log({data})
+    redirect("/container/"+randomId)
+    // revalidatePath('/cart')
+    // location.reload()
+    // window.location.reload();
     // cartItems[0].id = 1;
     // router.push("/container"+id)
   }
@@ -142,8 +149,8 @@ export default async function list() {
              <Link href={"/checkout/"} className="mt-10 bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-full flex justify-center w-20" >Buy</Link>
              </div>
              <div className='w-full flex justify-center mb-10'> 
-              
-              <form action = {addContainer} onSubmit={handleSubmit()}>
+              {/* <Btn /> */}
+              <form action = {addContainer}>
               <button type='submit' className={"flex justify-center mx-4"+"mt-2 bg-transparent hover:bg-blue-400 text-blue-400  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-full"}>   Add to Container </button> 
               
               </form>
