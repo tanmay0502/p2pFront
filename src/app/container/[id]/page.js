@@ -8,6 +8,8 @@ import Link from 'next/link'
 import Container from './container'
 import Image from 'next/image'
 // import { useEffect } from 'react'
+import { Redirect } from 'next'
+import { redirect } from 'next/navigation'
 
 const getCList = async (params) => {
     const res = await fetch("http://127.0.0.1:8000/container/?id="+params.id,{cache: "no-cache"});
@@ -48,10 +50,9 @@ export default async function list({params}) {
         const data = await response.json();
         console.log({data})
     }
+    // redirect("/cart/")
+    redirect("/cart/")
 
-
-    // cartItems[0].id = 1;
-    // router.push("/container"+id)
   }
 
   const keys = Object.keys(products.data);
@@ -122,7 +123,7 @@ export default async function list({params}) {
             <div className='w-full flex justify-center mb-10'>
 
               <form action = {addCart} >
-              <button type='submit' className={"flex justify-center mx-4"+"mt-2 bg-transparent hover:bg-blue-400 text-blue-400  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-full"}>   Add to Cart </button> 
+              <button type='submit' className={"flex justify-center mx-4"+"mt-2 bg-transparent hover:bg-blue-400 text-blue-400  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-full"}>   Add all items to Cart </button> 
               
               </form>
               {/* {success} */}

@@ -12,6 +12,7 @@
     font-family:'Monserat', sans-serif;
 }
 
+
 .logo {
     height: 30px;
     width: auto;
@@ -37,14 +38,14 @@
     background-color: #f7f7f7;
     display: grid;
     padding-right: 10%;
-    grid-template-columns: 3fr repeat(5, 0.5fr) repeat(3, 0.3fr);
+    grid-template-columns: 3fr repeat(5, 0.5fr) 1fr repeat(2, 0.3fr);
     grid-template-rows: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     font-family: Poppins;
     }
     
-    .div1 { grid-area: 1 / 1 / 2 / 2;font-size: 20px; display: flex; align-items: center; width: 100%; height: 100%; justify-content: center; padding-right: 5%;}
+    .div1 { grid-area: 1 / 1 / 2 / 2; padding-left: 20px ;font-size: 20px; display: flex; align-items: center; width: 100%; height: 100%; justify-content: start; padding-right: 5%;}
     .div2 { grid-area: 1 / 2 / 2 / 3;padding: 20px; display: flex; align-items: center; }
     .div3 { grid-area: 1 / 3 / 2 / 4;padding: 20px; display: flex; align-items: center; }
     .div4 { grid-area: 1 / 4 / 2 / 5; padding: 20px; display: flex; align-items: center;}
@@ -82,3 +83,79 @@
         font-size: 16px;
     }
 }
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
+  
+  .inputField {
+    font-family: 'Poppins', sans-serif;
+    width: 300px;
+    padding-left: 5px;
+    margin: 0 20px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    /* margin-bottom: 20px; */
+    transition: border-color 0.3s ease-in-out;
+  }
+  
+  .inputField:focus,
+  .inputField:hover {
+    border-bottom-color: #0080b3;
+  }
+  
+  .button {
+    font-family: 'Poppins', sans-serif;
+    width: 200px;
+    padding: 10px;
+    background-color: #007bff;
+    color: rgb(164, 15, 15);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .button:hover {
+    background-color: #0056b3;
+  }
+
+  .inputFieldContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: Poppins;
+
+    margin-bottom: 20px;
+  }
+  
+  .closeButton {
+    /* position: absolute; */
+    display: flex;
+    font-family: Poppins;
+
+    width: 100%;
+    justify-content: end;
+    margin-bottom: 20px;
+    background: none;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    color: #333;
+  }
+  
+  .modalContent {
+    text-align: center;
+    font-family: Poppins;
+
+  }
+  
+  .relatedProductsHeader {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-family: Poppins;
+    font-weight: 600;
+
+  }
