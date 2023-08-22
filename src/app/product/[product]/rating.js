@@ -3,7 +3,7 @@ import * as React from 'react';
 import Rating from '@mui/material/Rating';
 import Box from '@mui/material/Box';
 import StarIcon from '@mui/icons-material/Star';
-import submitRate from "./submitRate"
+import { addReview } from "./submitRate"
 
 const labels = {
     0.5: 'Useless',
@@ -23,9 +23,15 @@ const labels = {
   }
   
   export default function ProdRate() {
-    const [value, setValue] = React.useState(2);
+    const [value, setValue] = React.useState(0);
     const [hover, setHover] = React.useState(-1);
-  
+    
+
+    function postReq() {
+        let formData = new FormData();
+        formData.append(value, "U123");
+        // addReview(FormData)
+    }
     return (
       <Box
         sx={{
@@ -41,7 +47,7 @@ const labels = {
           getLabelText={getLabelText}
           onChange={(event, newValue) => {
             setValue(newValue);
-            submitRate(newValue)
+            addReview(newValue, )
           }}
           onChangeActive={(event, newHover) => {
             setHover(newHover);

@@ -1,22 +1,27 @@
 "use server"
-export const addReview = async (FormData) => {
-    const review = FormData.get("review");
-    
-    if(!review) return;
-    console.log({review});
-    const rev = {
-        review:review,
-        userID:"T522"
-    }
 
-    await fetch('http://127.0.0.1:8000/reviews/9/', {
-      method: "POST",
-      body: JSON.stringify(rev),
+import { redirect } from "next/navigation"
+
+export const addReview = async (FormData) => {
+    // const review = FormData.get("review");
+    // const rate = FormData.get("name");
+
+    console.log(FormData);
+    // const rev = {
+    //     review:2,
+    //     userID:"T522"
+    // }
+
+    await fetch('http://127.0.0.1:8000/ratings/9/T123/'+FormData+"/", {
+      method: "PUT",
+      body: JSON.stringify(),
       headers:{
         "Content-Type": "application/json",
       }
     })
-    revalidateTag("review")
+    // redirect('/')
+    // console.log(data)
+    // revalidateTag("review")
     // redirect("/")
 
     // relo("/")
