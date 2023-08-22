@@ -11,7 +11,8 @@ import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
 import { redirect } from 'next/dist/server/api-utils'
 import prev3 from '@/components/pages/OurProd.module.css'
-
+import { revalidateTag } from 'next/cache'
+import ProdRate from './rating'
 // const reviewForm = () => {
 //     "use server"
   
@@ -136,7 +137,7 @@ const labels = {
         "Content-Type": "application/json",
       }
     })
-    
+    revalidateTag("review")
     // redirect("/")
 
     // relo("/")
@@ -214,7 +215,8 @@ export default async function Single({params}) {
                                 <div className='flex pt-1 pb-2'>
 
                                     <p className='pt-1 text-lg pr-2'>Rate product: </p>
-                                    <form action=""> 
+                                    <ProdRate />
+                                    {/* <form action=""> 
                                         <Box
                                         sx={{
                                             width: 200,
@@ -227,14 +229,10 @@ export default async function Single({params}) {
                                             value={value}
                                             // readOnly
                                             precision={0.2}
-                                            
                                             emptyIcon={<StarIcon style={{ opacity: 1 }} fontSize="inherit" />}
                                         />
-                                        {/* {value !== null && (
-                                            <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
-                                        )} */}
                                         </Box> 
-                                    </form>
+                                    </form> */}
                                     </div>
 
 

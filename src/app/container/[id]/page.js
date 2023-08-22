@@ -10,7 +10,7 @@ import Image from 'next/image'
 // import { useEffect } from 'react'
 import { Redirect } from 'next'
 import { redirect } from 'next/navigation'
-
+import ProdRate from '@/app/product/[product]/rating'
 const getCList = async (params) => {
     const res = await fetch("http://127.0.0.1:8000/container/?id="+params.id,{cache: "no-cache"});
     // console.log(res.json());
