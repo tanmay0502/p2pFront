@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
+import { searchProduct } from './search';
 
 const customStyles = {
     overlay: {
@@ -37,7 +38,8 @@ const Navbar = () => {
       
       let subtitle;
       const [modalIsOpen, setIsOpen] = React.useState(false);
-    
+      const [searchedProduct, setSearchedProduct] = React.useState({ words: {} });
+      // console.log(searchedProduct.words);
       function openModal() {
         setIsOpen(true);
       }
@@ -50,7 +52,11 @@ const Navbar = () => {
       function closeModal() {
         setIsOpen(false);
       }
-    
+      const handleSearchChange = async (event) => {
+        const newValue = event.target.value;
+        const searchResult = await searchProduct(newValue);
+        setSearchedProduct(searchResult);
+      };
     return (
             <div className="">
                 <div className={styles.parent}>
@@ -99,6 +105,13 @@ const Navbar = () => {
             <input
               type="text"
               placeholder="Search Products"
+              // onChange={async (event) => {
+              //   const newValue = event.target.value;
+              //   const searchResult = await searchProduct(newValue);
+              //   setProducts(searchResult);
+                
+              // }}
+              onChange={handleSearchChange}
               className={styles.inputField}
             />
             <button className="">
@@ -111,7 +124,24 @@ const Navbar = () => {
               />
             </button>
           </div>
-          <h2 className={styles.relatedProductsHeader}>Matched Products</h2>
+          {/* <h2 className={styles.relatedProductsHeader}>Matched Products</h2> */}
+          <div className=''>
+
+            
+            {Object.keys(searchedProduct.words).length > 0 ? (
+                Object.keys(searchedProduct.words).map((productName, index) => (
+                  <>
+                  <Link href={"/product/"+searchedProduct.words[productName]} className="" >
+                  <div key={index} className={styles.matchedProduct}>
+                    {productName}
+                  </div>
+                  </Link>
+                  </>
+                ))
+              ) : (
+                <div className={styles.noMatchedProducts}>Products will appear here.</div>
+              )}
+          </div>
           <div className={styles.relatedProducts}>
             
           </div>

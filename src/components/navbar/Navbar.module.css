@@ -104,6 +104,7 @@
   
   .inputField:focus,
   .inputField:hover {
+    outline: none;
     border-bottom-color: #0080b3;
   }
   
@@ -158,4 +159,12 @@
     font-family: Poppins;
     font-weight: 600;
 
+  }
+  .matchedProduct{
+    display: flex;
+    padding-left: 25px;
+    font-family: Poppins;
+  }
+  .noMatchedProduct{
+    font-family: Poppins;
   }
