@@ -142,7 +142,17 @@
 .rev{
   font-family: Poppins;
   width: 80%;
+  background-color: #eaeaea;
+  padding: 20px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
 }
+/* .rev2{
+  font-family: Poppins;
+  width: 80%;
+  background-color: #e6f2ff;
+  padding: 20px;
+} */
 .starFilled,
 .starEmpty,
 .starHalf {
@@ -220,7 +230,10 @@
 }
 .reviewFC {
   /* margin: 100px 100px; */
-  border-radius: 30px;
+  border-top-left-radius: 30px ;
+  border-top-right-radius: 30px ;
+  /* border-top: 30px ; */
+  /* border-top-radius: 30px; */
   font-family: Poppins;
   max-width: 80%;
   background-color: #f8f8f8;

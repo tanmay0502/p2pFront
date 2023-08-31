@@ -14,7 +14,7 @@ const getList = async (params) => {
 
 export default async function list({params}) {
     const gproducts = await getList(params);
-    {console.log({params})}
+    // {console.log({params})}
     // var products = [[gproducts.results[0].name]]
     // var products = [];
     // for (let i = 0; i < gproducts.length; i++) {
@@ -52,7 +52,7 @@ export default async function list({params}) {
             {/* Map Products */}
             <div className="p-20">
                 <div className={prev.productList}>
-                            {gproducts.results.map((product, index) => (
+                            {gproducts && gproducts.results && gproducts.results.map((product, index) => (
                                 <>
                                 <Link href={"/product/" + product.id} >
                                     <div className="flex justify-center items-center">

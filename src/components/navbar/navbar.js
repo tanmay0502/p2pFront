@@ -74,17 +74,17 @@ const Navbar = () => {
                 <Link href={"/"} ><button className={styles.div5}> Contact </button></Link> 
                 <div className={styles.div6}> </div>
                 <div className={styles.div7} id = "search">
-                <input
-                    onClick={openModal}
+                {/* <input
+                    
                     type="text"
                     // value={userInput}
                     // onChange={handleInputChange}
                     placeholder="Search Products"
                     className={styles.inputField}
                     
-                />
+                /> */}
                 <button className="">
-                 <Image className={styles.navImg} src="/search.svg" width={100} height={100} alt="Logo" />
+                 <Image onClick={openModal} className={styles.navImg} src="/search.svg" width={100} height={100} alt="Logo" />
                 </button>
                 </div>
                 {/* <Link href={"/"} ><div className={styles.div7}>  <Image className={styles.navImg} src="/search.svg" width={100} height={100} alt="Logo" /> </div></Link> */}

@@ -17,12 +17,16 @@ const labels = {
     4.5: 'Excellent',
     5: 'Excellent',
   };
-  
+  const getRate = async (params) => {
+    const res = await fetch(("http://127.0.0.1:8000/ratings/9/T123/6/"),{cache: "no-cache"});
+    return res.json();
+}
   function getLabelText(value) {
     return `${value} Star${value !== 1 ? 's' : ''}, ${labels[value]}`;
   }
   
   export default function ProdRate() {
+    
     const [value, setValue] = React.useState(0);
     const [hover, setHover] = React.useState(-1);
     
