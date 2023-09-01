@@ -9,11 +9,13 @@ import Link from 'next/link'
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
-import { redirect } from 'next/dist/server/api-utils'
+// import { redirect } from 'next/dist/server/api-utils'
 import prev3 from '@/components/pages/OurProd.module.css'
 import { revalidateTag } from 'next/cache'
 import ProdRate from './rating'
 import old from '../../cart/Page.module.css'
+import { redirect } from 'next/navigation'
+import { Addchart } from '@mui/icons-material'
 // const reviewForm = () => {
 //     "use server"
   
@@ -44,22 +46,39 @@ import old from '../../cart/Page.module.css'
   
 // 
 
+
 const getRate = async (params) => {
-    const res = await fetch(("http://127.0.0.1:8000/ratings/9/T123/6/"),{cache: "no-cache"});
+    const res = await fetch((process.env.URI + "/ratings/"+ params.product + "/T123/6/"),{cache: "no-cache"});
     return res.json();
 }
 const getProduct = async (params) => {
-    const res = await fetch(("http://127.0.0.1:8000/product/"+ params.product),{cache: "no-cache"});
+    const res = await fetch((process.env.URI + "/product/"+ params.product),{cache: "no-cache"});
     
     return res.json();
 }
 const getReviews = async (params) => {
-    const res = await fetch(("http://127.0.0.1:8000/reviews/"+ params.product) ,{cache: "no-cache"});
+    const res = await fetch((process.env.URI + "/reviews/"+ params.product) ,{cache: "no-cache"});
+    // const ret = res != null ? res.json() : [];
     return res.json();
 }
 const getRating = async (params) => {
-    const res = await fetch("http://127.0.0.1:8000/average_rating/"+ params.product ,{cache: "no-cache"});
-    return res.json();
+    const res = await fetch(process.env.URI + "/average_rating/"+ params.product ,{cache: "no-cache"});
+    
+    try {
+        const data = await res.json();
+        
+        // Check if the response is empty
+        if (Object.keys(data).length === 0) {
+            // Return an alternative value, such as an empty object
+            return {};
+        }
+        
+        return data;
+    } catch (error) {
+        // Handle JSON parsing error or other issues
+        console.error('Error fetching rating:', error);
+        return {}; // Return an empty object or other appropriate value
+    }
 }
 const RatingStars = (rating) => {
     const filledStars = Math.floor(rating);
@@ -101,14 +120,14 @@ const labels = {
   const addReview = async (FormData) => {
     "use server";
     const review = FormData.get("review");
-    
+    const prod = FormData.get("product")
     if(!review) return;
     const rev = {
         review:review,
         userID:"T522"
     }
-
-    await fetch('http://127.0.0.1:8000/reviews/'+params.product, {
+    console.log(prod)
+    await fetch('http://127.0.0.1:8000/reviews/'+ prod + "/", {
       method: "POST",
       body: JSON.stringify(rev),
       headers:{
@@ -119,13 +138,17 @@ const labels = {
   }
 
 export default async function Single({params}) {
-    const rate = await getRate(); 
+    const rate = await getRate(params); 
     
     const gproducts = await getProduct(params);
     const reviews2 = await getReviews(params);
+    // console.log({reviews2})
+
     const rating2 = await getRating(params);
     const value = 0;
-    var stock = gproducts.stock;
+    var stock = gproducts ? gproducts.stock : 0;
+    var solBy = gproducts ? gproducts.seller : 0;
+    var disc = gproducts ? gproducts.discount : 0;
     var rating = rating2 ? rating2.ratings : 0;
     var users = rating2 ? rating2.users_count: 0;
     var reviews = reviews2 ? reviews2.reviews: 0;
@@ -136,6 +159,29 @@ export default async function Single({params}) {
     let price = currProduct.price || 0;
     let discount = currProduct.discount || 0;
     const discountedPrice = price - (price * (discount / 100));
+
+    const addCart = async (FormData) => {
+        "use server";
+            const rev = {
+                userID:"T1233",
+                product: "" + currProduct.id + "",
+                quantity:1
+            }
+            console.log({rev})
+            const response = await fetch('http://127.0.0.1:8000/insert_cart/', {
+            // await fetch('http://127.0.0.1:8000/insert_cart/', {
+              method: "POST",
+              body: JSON.stringify(rev),
+              headers:{
+                "Content-Type": "application/json",
+              }
+    
+            })
+            const data = await response.json();
+            console.log({data})
+            redirect("/cart/")
+      }
+
 
     return (
        
@@ -163,6 +209,8 @@ export default async function Single({params}) {
                             </div>
                         </div>
                         <div className={styles.details}>
+                        <p className='pr-2 text-sm font-semibold font-poppins text-red-600 flex w-full justify-end'> <span className='bg-red-200 px-2 py-1 rounded-xl'> {discount + "%"} off </span></p>
+
                             <p className={styles.name}> {name}</p>
                             <div className='flex'>
                             
@@ -185,16 +233,19 @@ export default async function Single({params}) {
                                     </Box>
                                     <p className='pt-1 pr-2 text-sm font-poppins text-gray-600'>({users} users) </p>
                             </div>
-                            <p className={styles.nameSm}>₹{discountedPrice.toFixed(2)} <span className='text-xl text-red-400'><s>{" ₹"+price}</s></span></p>
+                            <p className={styles.nameSm}>₹{discountedPrice.toFixed(2)} 
+                                <span className='mt-2 text-xl text-red-400'><s>{" ₹"+price}</s></span> 
+                            </p>
                             {/* <p className={styles.originalPrice}>Original Price: ${price}</p> */}
+                            
+                            <p className='pt-2 pr-2 text-md font-poppins text-gray-400'>Only <span className='text-xl text-red-400'>{stock}</span> left in stock </p>
+                            <p className='pt-1 pr-2 text-md font-poppins text-gray-400'> Sold By: {solBy} </p>
                             <div className={styles.actions}>
                                 <Link href={"/checkout/"} className="bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-full" >Buy</Link>
-                                <Link href={"/chart/"} className="bg-transparent hover:bg-blue-400 text-blue-400  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-full">+ Cart</Link>
+                                <form action={addCart}><button type='submit' href={"/chart/"} className="bg-transparent hover:bg-blue-400 text-blue-400  hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-full">+ Cart</button></form>
                                 {/* <Link href={"/container/"} className="bg-transparent hover:bg-blue-400 text-blue-400 hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded-full">+ Container</Link> */}
                             </div>
-                            <p className='pt-2 pr-2 text-md font-poppins text-gray-600'>Only <span className='text-xl text-red-400'>{stock}</span> left in stock </p>
-                                    SOLD BY
-                                    Kinta off
+                            
                         </div>
                         </div>
                         </div>
@@ -222,7 +273,7 @@ export default async function Single({params}) {
                                     {rate && rate.rating == 0 ? 
                                     <>
                                     <p className='pt-1 text-lg pr-2'>Rate product: </p>
-                                    <ProdRate />
+                                    <ProdRate prod= {params.product} />
                                     </>
                                     :
                                     <>
@@ -258,6 +309,14 @@ export default async function Single({params}) {
 
 
                                     <form action={addReview}>
+                                         <textarea
+                                        name="product"
+                                        className={styles.reviewI}
+                                        // placeholder="Write your review here..."
+                                          value={params.product}
+                                        // onChange={(e) => setReview(e.target.value)}
+                                        hidden
+                                        />
                                         <textarea
                                         name="review"
                                         className={styles.reviewI}
@@ -272,28 +331,32 @@ export default async function Single({params}) {
                                     </form>
                                 </div>
                                 </div>
-                            <div className='flex justify-center'>           
-                            <div className={styles.rev}>
-                            <p className='text-xl pt-1 pr-2 font-semibold' >What buyers think:</p>
-                            {/* {console.log(rating)} */}
-                            {
-                                reviews &&
-                                Object.entries(reviews)
-                                    .reverse() 
-                                    .map(([userId, reviewText], index) => (
-                                        <div key={userId} className={styles.reviewContainer}>
-                                            <div className={styles.reviewText}>
-                                                <span className={styles.userName}> {`${userId}`}</span>: {reviewText}
-                                            </div>
-                                        </div>
-                                    ))
-                            }
-                                
-                                <div className="">
-                                    {/* <p className={styles.miniHead}>Reviews:</p> */}
 
+
+                                <div className='flex justify-center'>
+                                    <div className={styles.rev}>
+                                        <p className='text-xl pt-1 pr-2 font-semibold'>What buyers think:</p>
+                                        {reviews && Object.keys(reviews).length === 0 ? (
+                                            <p>No reviews available</p>
+                                        ) : (
+                                            reviews &&
+                                            Object.entries(reviews)
+                                                .reverse() 
+                                                .map(([userId, reviewText], index) => (
+                                                    <>
+                                                    <div key={userId} className={styles.reviewContainer}>
+                                                        <div className={styles.reviewText}>
+                                                            <span className={styles.userName}>{userId}</span>: {reviewText}
+                                                        </div>
+                                                    </div>
+                                                    <hr className={styles.reviewHr}></hr>
+                                                    </>
+                                                ))
+                                        )}
+                                    </div>
                                 </div>
-                            </div></div>
+
+
                         <div className={styles.description}>
                             <div className={styles.container}>
                                 
@@ -323,7 +386,7 @@ export default async function Single({params}) {
                                                     price={product[2]}
                                                     discount={product[3]}
                                                     />
-
+                                                    
                                                 </div>
                                                 </Link>
                                             </>

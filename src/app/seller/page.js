@@ -10,7 +10,7 @@ import Image from 'next/image'
 // import prev from '@/components/pages/OurProd.module.css'
 
 const getList = async () => {
-  const res = await fetch("http://127.0.0.1:8000/products_list/?page=1",{cache: "no-cache"});
+  const res = await fetch(process.env.URI + "/products_list/?page=1",{cache: "no-cache"});
   return res.json();
 }
 

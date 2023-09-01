@@ -28,6 +28,7 @@
   .actions {
     display: flex;
     gap: 10px;
+    justify-content: end;
     margin-top: 10px;
   }
   
@@ -72,6 +73,7 @@
     color: #000;
     font-family: Poppins;
     font-size: 42px;
+    padding-bottom: 10px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -82,6 +84,7 @@
     font-size: 25px;
     font-style: normal;
     font-weight: 600;
+    padding-top: 10px;
     line-height: normal;
   }
 .descriptionHead{
@@ -269,4 +272,9 @@
   .reviewFC {
     padding: 10px;
   }
+}
+
+.reviewHr {
+  width: 90%;
+  margin: 0 auto;
 }

@@ -10,12 +10,12 @@ import Image from 'next/image'
 // import { useEffect } from 'react'
 
 const getCList = async () => {
-    const res = await fetch("http://127.0.0.1:8000/container/?id=524",{cache: "no-cache"});
+    const res = await fetch(process.env.URI + "/container/?id=524",{cache: "no-cache"});
     // console.log(res.json());
     return res.json();
 }
 const getProduct = async (id) => {
-  const res = await fetch("http://127.0.0.1:8000/product/"+ id,{cache: "no-cache"});
+  const res = await fetch(process.env.URI + "/product/"+ id,{cache: "no-cache"});
   return res.json();
 }
 

@@ -8,7 +8,7 @@ import Btn from '../btn'
 import Image from 'next/image'
 
 const getList = async (params) => {
-    const res = await fetch("http://127.0.0.1:8000/products_list/?page="+ params.productList,{cache: "no-cache"});
+    const res = await fetch( process.env.URI + "products_list/?page="+ params.productList,{cache: "no-cache"});
     return res.json();
 }
 

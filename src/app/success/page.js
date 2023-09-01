@@ -11,7 +11,7 @@ import { redirect } from 'next/dist/server/api-utils'
 // import { useNa } from 'next/router'
 // import 
 // const getList = async () => {
-//     const res = await fetch("http://127.0.0.1:8000/products_list/?page=1");
+//     const res = await fetch(process.env.URI + "/products_list/?page=1");
 //     return res.json();
 // }
 

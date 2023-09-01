@@ -15,11 +15,11 @@ import Btn from './button';
 import { revalidatePath } from 'next/cache';
 
 async function getList(){
-    const res = await fetch("http://127.0.0.1:8000/cart/?userid=T123",{cache: "no-cache"});
+    const res = await fetch(process.env.URI + "/cart/?userid=T1233",{cache: "no-cache"});
     return res.json();
 }
 const getProduct = async (id) => {
-  const res = await fetch("http://127.0.0.1:8000/product/"+ id,{cache: "no-cache"});
+  const res = await fetch(process.env.URI + "/product/"+ id,{cache: "no-cache"});
   return res.json();
 }
 

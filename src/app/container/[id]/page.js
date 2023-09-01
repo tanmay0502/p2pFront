@@ -12,12 +12,12 @@ import { Redirect } from 'next'
 import { redirect } from 'next/navigation'
 import ProdRate from '@/app/product/[product]/rating'
 const getCList = async (params) => {
-    const res = await fetch("http://127.0.0.1:8000/container/?id="+params.id,{cache: "no-cache"});
+    const res = await fetch(process.env.URI + "/container/?id="+params.id,{cache: "no-cache"});
     // console.log(res.json());
     return res.json();
 }
 const getProduct = async (id) => {
-  const res = await fetch("http://127.0.0.1:8000/product/"+ id,{cache: "no-cache"});
+  const res = await fetch(process.env.URI + "/product/"+ id,{cache: "no-cache"});
   return res.json();
 }
 

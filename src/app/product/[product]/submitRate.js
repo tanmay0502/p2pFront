@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation"
 
-export const addReview = async (FormData) => {
+export const addReview = async (FormData, prod) => {
     // const review = FormData.get("review");
     // const rate = FormData.get("name");
 
@@ -12,7 +12,7 @@ export const addReview = async (FormData) => {
     //     userID:"T522"
     // }
 
-    await fetch('http://127.0.0.1:8000/ratings/9/T123/'+FormData+"/", {
+    await fetch('http://127.0.0.1:8000/ratings/'+ prod + '/T123/'+FormData+"/", {
       method: "PUT",
       body: JSON.stringify(),
       headers:{

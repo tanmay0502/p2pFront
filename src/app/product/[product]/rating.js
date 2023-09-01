@@ -17,25 +17,25 @@ const labels = {
     4.5: 'Excellent',
     5: 'Excellent',
   };
-  const getRate = async (params) => {
-    const res = await fetch(("http://127.0.0.1:8000/ratings/9/T123/6/"),{cache: "no-cache"});
-    return res.json();
-}
+//   const getRate = async (params) => {
+//     const res = await fetch((process.env.URI + "/ratings/9/T123/6/"),{cache: "no-cache"});
+//     return res.json();
+// }
   function getLabelText(value) {
     return `${value} Star${value !== 1 ? 's' : ''}, ${labels[value]}`;
   }
   
-  export default function ProdRate() {
+  export default function ProdRate(prod) {
     
     const [value, setValue] = React.useState(0);
     const [hover, setHover] = React.useState(-1);
     
 
-    function postReq() {
-        let formData = new FormData();
-        formData.append(value, "U123");
-        // addReview(FormData)
-    }
+    // function postReq() {
+    //     let formData = new FormData();
+    //     formData.append(value, "U123");
+    //     // addReview(FormData)
+    // }
     return (
       <Box
         sx={{
@@ -51,7 +51,8 @@ const labels = {
           getLabelText={getLabelText}
           onChange={(event, newValue) => {
             setValue(newValue);
-            addReview(newValue, )
+            // console.log({prod})
+            addReview(newValue,"10")
           }}
           onChangeActive={(event, newHover) => {
             setHover(newHover);
